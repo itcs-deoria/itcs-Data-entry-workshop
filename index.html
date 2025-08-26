@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Excel Data Entry Operator Workshop</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+      color: #fff;
+    }
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 15px;
+      padding: 20px;
+      background:linear-gradient(90deg, rgb(49, 38, 212), rgb(210, 5, 155));
+      backdrop-filter: blur(6px);
+      animation: slideDown 1s ease-in-out;
+    }
+    @keyframes slideDown {
+      from {transform: translateY(-100%); opacity:0;}
+      to {transform: translateY(0); opacity:1;}
+    }
+    header img {
+      height: 60px;
+      width: 60px;
+      border-radius: 50%;
+      border: 2px solid #ffb703;
+      animation: spinLogo 6s linear infinite;
+    }
+    @keyframes spinLogo {
+      from {transform: rotate(0deg);}
+      to {transform: rotate(360deg);}
+    }
+    header .brand h1 {
+      margin: 0;
+      font-size: 26px;
+      font-weight: 700;
+      color: #f1faee;
+      animation: fadeIn 2s ease-in-out;
+    }
+    header .brand p {
+      margin: 0;
+      font-size: 14px;
+      color: #a8dadc;
+    }
+    @keyframes fadeIn {
+      from {opacity: 0;}
+      to {opacity: 1;}
+    }
+    .hero img {
+      width: 100%;
+      max-height: 400px;
+      object-fit: cover;
+      box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.404);
+      animation: zoomIn 2s ease;
+    }
+    @keyframes zoomIn {
+      from {transform: scale(0.9); opacity:0;}
+      to {transform: scale(1); opacity:1;}
+    }
+    .section {
+      max-width: 950px;
+      margin: 40px auto;
+      background: rgba(255,255,255,0.05);
+      padding: 25px;
+      border-radius: 16px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+      backdrop-filter: blur(6px);
+      transition: transform 0.3s;
+      animation: fadeUp 1.5s ease;
+    }
+    .section:hover {
+      transform: translateY(-5px);
+    }
+    @keyframes fadeUp {
+      from {transform: translateY(30px); opacity:0;}
+      to {transform: translateY(0); opacity:1;}
+    }
+    .section h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #ffb703;
+      font-size: 25px;
+      font-weight: 600;
+      border: 1px solid white;
+      border-radius: 10px;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%,100% {box-shadow: 0 0 10px #ffb703;}
+      50% {box-shadow: 0 0 25px #ffb703;}
+    }
+    .content-list {
+      list-style: disc;
+      padding-left: 20px;
+      line-height: 2.1;
+      font-size: 16px;
+      border-top: 1px solid white;
+      border-bottom: 1px solid white;
+      border-radius: 10px;
+    }
+    .button {
+      display: inline-block;
+      background: linear-gradient(90deg, #ff006e, #fb5607);
+      color: white;
+      padding: 14px 28px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 16px;
+      transition: all 0.3s ease;
+      animation: bounce 2s infinite;
+    }
+    .button:hover {
+      background: linear-gradient(90deg, #fb5607, #ff006e);
+      transform: scale(1.05);
+    }
+    @keyframes bounce {
+      0%,20%,50%,80%,100% {transform: translateY(0);}
+      40% {transform: translateY(-8px);}
+      60% {transform: translateY(-4px);}
+    }
+    footer {
+      background: rgba(0,0,0,0.8);
+      color: #f1faee;
+      text-align: center;
+      padding: 60px 20px 20px;
+      margin-top: 40px;
+      font-size: 14px;
+      position: relative;
+    }
+    .sticky-bar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background: linear-gradient(90deg, #ff006e, #fb5607);
+      color: #fff;
+      text-align: center;
+      padding: 15px;
+      font-size: 18px;
+      font-weight: bold;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 15px;
+      box-shadow: 0 -2px 10px rgba(0,0,0,0.5);
+      z-index: 9999;
+    }
+    .sticky-bar a {
+      background: #fff;
+      color: #ff006e;
+      padding: 8px 18px;
+      border-radius: 20px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+    .sticky-bar a:hover {
+      background: #ff006e;
+      color: #fff;
+    }
+    .discount-box {
+      text-align: center;
+      padding: 20px;
+      background: rgba(255,255,255,0.1);
+      border: 2px dashed #ffb703;
+      border-radius: 12px;
+      margin: 20px 0;
+      font-size: 16px;
+    }
+    .discount-option {
+      margin: 10px 0;
+      text-align: left;
+      border-bottom: 1px solid white;
+      border-radius: 10px;
+    }
+    .final-result {
+      font-weight: bold;
+      margin-top: 10px;
+      font-size: 20px;
+      color: #06d6a0;
+    }
+    .news-bar {
+      background: #ff006e;
+      color: white;
+      padding: 10px;
+      overflow: hidden;
+      white-space: nowrap;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    .news-text {
+      display: inline-block;
+      padding-left: 100%;
+      animation: scrollLeft 15s linear infinite;
+    }
+    @keyframes scrollLeft {
+      0% {transform: translateX(0);}
+      100% {transform: translateX(-100%);}
+    }
+    .countdown {
+      text-align: center;
+      font-size: 22px;
+      margin: 20px 0;
+      color: #ffb703;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="news-bar">
+    <span class="news-text">🔥 Breaking: Excel Data Entry Operator Workshop registrations are OPEN! Limited Seats, Hurry! 🔥</span>
+  </div>
+
+  <header>
+    <img src="ITCS-min.webp" alt="ITCS Logo">
+    <div class="brand">
+      <h1>IT Computer Studies</h1>
+      <p>Excel Data Entry Operator Workshop</p>
+    </div>
+  </header>
+
+  <div class="hero">
+    <img src="Data Entry Operator  Workshop -min.jpg" alt="Workshop Poster">
+  </div>
+
+  <div class="countdown" id="countdown"></div>
+
+<div class="section">
+  <h2>📌 Workshop Content</h2>
+  <ul class="content-list">
+    <li>
+      ⚡ <b>Fast Table Creation & Shortcuts</b><br>
+      Data ko जल्दी से table format में convert करना और  
+      useful keyboard shortcuts सीखना।
+    </li>
+    <li>
+      ✨ <b>Flash Fill (Phone, Email, Certificates)</b><br>
+      Excel की auto-fill power से नाम, phone, email जैसे data  
+      automatically generate करना।
+    </li>
+    <li>
+      📝 <b>Hardcopy to Excel Conversion</b><br>
+      Paper-based records को Excel में convert करने की आसान techniques।
+    </li>
+    <li>
+      🔗 <b>Merge Sheets into One</b><br>
+      Multiple sheets के data को एक ही sheet में smart तरीके से combine करना।
+    </li>
+    <li>
+      🖨️ <b>Print Setup & Smart Tricks</b><br>
+      Excel file को print-ready बनाना और professional look देना।
+    </li>
+    <li>
+      🎁 <b>Bonus: Hidden Excel Tips for Operators</b><br>
+      ऐसे hidden shortcuts और tricks जो आपकी speed को double कर देंगे।
+    </li>
+  </ul>
+</div>
+
+
+<div class="section">
+  <h2>🎁 Special Offers</h2>
+  
+  <div class="discount-option">
+    <label>
+      <input type="checkbox" class="discount-check" value="25"> 
+      👯 <b>Bring a Friend → Both get 25% OFF</b><br>
+      👉 Agar aap apne friend ke sath register karte ho, toh dono ko fee par 25% discount मिलेगा।
+    </label>
+  </div>
+
+  <div class="discount-option">
+    <label>
+      <input type="checkbox" class="discount-check" value="20"> 
+      ⚡ <b>First 20 Registrations → 20% OFF</b><br>
+      👉 Jo sabse pehle register karenge (sirf 20 students), unhe मिलेगा special 20% discount।
+    </label>
+  </div>
+
+  <div class="discount-option">
+    <label>
+      <input type="checkbox" class="discount-check" value="100"> 
+      🎓 <b>New Admission in Any Course → 100% FREE</b><br>
+      👉 Agar aap workshop ke baad hamare kisi भी course me admission lete ho,  
+      toh workshop bilkul FREE हो जाएगी।
+    </label>
+  </div>
+
+  <div class="discount-box">
+    <p>💰 Workshop Fee: <b>₹500</b></p>
+    <p>Total Discount: <span id="total-discount">0%</span></p>
+    <p class="final-result">Final Payable Fee: ₹<span id="final-fee">500</span></p>
+  </div>
+</div>
+
+<div class="section">
+  <h2>💡 Why ₹500 is Not Expensive?</h2>
+<ul class="content-list">
+  <li>📱 <strong>Mobile Recharge ≈ ₹500</strong><br>
+      – Recharge se sirf इंटरनेट मिलेगा, पर ये workshop आपको career ka recharge देगा.</li>
+  
+  <li>💸 <strong>Use your Pocket Money ≈ ₹500</strong><br>
+      – Apne parents ko disturb करने की ज़रूरत नहीं, आप apne pocket money से आराम से join कर सकते हो.</li>
+  
+  <li>☕ <strong>Chai + Snacks (1 Week) ≈ ₹500</strong><br>
+      – Daily Momos,Burger,Chilli Potato etc.. / tea shop पे जो खर्च करते हो, उतने में ek बार invest करके lifetime skills पा सकते हो.</li>
+  
+  <li>👕 <strong>Ek T-Shirt ≈ ₹500+</strong><br>
+      – कपड़े पुरानी हो जाते हैं, लेकिन ये skill हमेशा काम आएगी.</li>
+  
+  <li>🎉 <strong>Saving  ≈ ₹500</strong><br>
+      – → Agar aap apne paise ko save bhi karte, usse accha hai apne upar invest karo aur skill pao., यहाँ से मिलेगा Certificate + Study Material + Job Skills.</li>
+  
+  <li>🚀 <strong>Future Value >> ₹500 </strong><br>
+      – Data Entry Operator job से आप easily महीने के हजारों कमा सकते हो, मतलब ये ₹500 पहले salary में ही recover हो जाएगा.</li>
+   <li>💰 <strong>500₹ se bhi कम में Join कर सकते हो!</strong> → 🎉 First 20 registrations pai ₹100 ka discount + 👬 dost ko laane pai ₹125 ka bonus dono logo ko. Matlab, आप अपनी workshop की fees को और कम कर सकते हो!</li>
+
+
+</ul>
+ 
+
+</div>
+
+  <div class="section">
+  <h2>🎓 After Workshop Benefits</h2>
+  <ul class="content-list">
+    <li>
+      ✅ <b>Certificate of Completion</b><br>
+      हर participant को <b>professionally designed certificate</b> दिया जाएगा,  
+      जो आपके Resume और Career में value add करेगा।
+    </li>
+    <li>
+      📘 <b>Study Material</b><br>
+      आपको <b>Digital PDF Notes</b> मिलेंगे  
+      ताकि आप workshop के बाद भी आसानी से revision कर सको।
+    </li>
+    <li>
+      💡 <b>Bonus Tips in Data Entry Operator</b><br>
+      Excel के <b>hidden shortcuts</b>, <b>smart tricks</b> और  
+      <b>real-life data entry scenarios</b> share किए जाएंगे,  
+      जो आपके काम को और तेज़ और आसान बनाएंगे।
+    </li>
+    <li>
+      🚀 <b>Career Guidance</b><br>
+      Workshop के end में आपको <b>job-oriented guidance</b> दी जाएगी  
+      ताकि आप अपनी skills को सही direction में use कर सको।
+    </li>
+  </ul>
+</div>
+
+
+  <div class="section" style="text-align:center;">
+  <h2>📝 Register Now</h2>
+  <p id="register msg">
+    🎯 <b>Seats are Limited!</b> Only few seats left.<br>
+    Hurry Up 🚀 and grab your spot today.
+  </p>
+  <p>
+    ✅ Secure your admission for the <b>Excel Data Entry Operator Workshop</b> <br>
+    and get <b>Certificate + Study Material</b> after completion.
+  </p>
+  <a href="https://forms.gle/iiASSmM35hbADvCP7" 
+     target="_blank" 
+     class="button" 
+     id="btn">Register Here</a>
+  <p style="margin-top:15px; font-size:14px; color:#ffb703;">
+    📌 Note: Early registration ensures special discounts & confirmed seat.
+  </p>
+</div>
+
+
+  <footer>
+    <p>📍 IT Computer Studies, HDFC Bank Gali, C.C Road, Deoria, U.P 274001</p>
+    <p>📞 +91 991-991-6995 | +91 807-753-8227</p>
+  </footer>
+
+  <!-- Sticky Countdown Bar -->
+  <div class="sticky-bar" id="sticky-bar">
+    <span id="sticky-countdown">⏳ Workshop Starts Soon!</span>
+    <a href="https://forms.gle/iiASSmM35hbADvCP7" target="_blank" id="btnreg">Register</a>
+  </div>
+
+  <script>
+    const baseFee = 500;
+    const discountChecks = document.querySelectorAll('.discount-check');
+    const totalDiscountSpan = document.getElementById('total-discount');
+    const finalFeeSpan = document.getElementById('final-fee');
+
+    function calculateDiscount(){
+      let totalDiscount = 0;
+      discountChecks.forEach(cb => {
+        if(cb.checked){
+          totalDiscount += parseInt(cb.value);
+        }
+      });
+      if(totalDiscount > 100) totalDiscount = 100;
+      let finalFee = Math.round(baseFee * (1 - totalDiscount/100));
+      if(finalFee < 0) finalFee = 0;
+      totalDiscountSpan.textContent = totalDiscount + "%";
+      finalFeeSpan.textContent = finalFee;
+    }
+
+    discountChecks.forEach(cb => cb.addEventListener('change', calculateDiscount));
+
+    // Countdown Timer (set workshop date)
+    const countdownEl = document.getElementById('countdown');
+    const stickyCountdown = document.getElementById('sticky-countdown');
+    const targetDate = new Date("Aug 31, 2025 16:00:00").getTime();
+
+    setInterval(() => {
+      const now = new Date().getTime();
+      const distance = targetDate - now;
+
+      if (distance < 0) {
+        countdownEl.innerHTML = "🚀 Workshop Started!";
+        stickyCountdown.innerHTML = "🚀 Workshop Started!";
+        document.getElementById('btn').style.display = "none"
+        document.getElementById('register msg').innerHTML = "Workshop is Start Now !! Wait For the Next Workshop 28-Aug-2025"
+        const link = document.getElementById("btnreg");
+        link.innerText="TimeUp"
+        link.style.pointerEvents = "none";  // click disable
+        link.style.opacity = "0.5";         // halka grey look
+        link.style.cursor = "not-allowed";  // disable cursor
+
+        return;
+      }
+
+      const days = Math.floor(distance / (1000*60*60*24));
+      const hours = Math.floor((distance % (1000*60*60*24)) / (1000*60*60));
+      const minutes = Math.floor((distance % (1000*60*60)) / (1000*60));
+      const seconds = Math.floor((distance % (1000*60)) / 1000);
+
+      const countdownText = `⏳ Workshop Starts In: ${days}d ${hours}h ${minutes}m ${seconds}s`;
+      countdownEl.innerHTML = countdownText;
+      stickyCountdown.innerHTML = countdownText;
+    }, 1000);
+  </script>
+
+</body>
+</html>
